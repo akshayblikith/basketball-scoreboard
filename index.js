@@ -1,43 +1,18 @@
-let homeScoreEl = document.getElementById("home-score")
-let awayScoreEl = document.getElementById("away-score")
-let leadingEl = document.getElementById("leading-el")
+const homeScoreEl = document.getElementById("home-score")
+const awayScoreEl = document.getElementById("away-score")
+const result = document.getElementById("result")
 let homeScore = 0
 let awayScore = 0
 
-function homeOne() {
-    homeScore += 1
-    homeScoreEl.textContent = homeScore;
-    leading()
-}
-
-function homeTwo() {
-    homeScore += 2
-    homeScoreEl.textContent = homeScore;
-    leading()
-}
-
-function homeThree() {
-    homeScore += 3
-    homeScoreEl.textContent = homeScore;
-    leading()
-}
-
-function awayOne() {
-    awayScore += 1
-    awayScoreEl.textContent = awayScore;
-    leading()
-}
-
-function awayTwo() {
-    awayScore += 2
-    awayScoreEl.textContent = awayScore;
-    leading()
-}
-
-function awayThree() {
-    awayScore += 3
-    awayScoreEl.textContent = awayScore;
-    leading()
+function updateScore(points, team) {
+    if (team === 'home') {
+        homeScore += points
+        homeScoreEl.textContent = homeScore
+    } else {
+        awayScore += +points
+        awayScoreEl.textContent = awayScore;
+    }
+    updateLeader()
 }
 
 function newGame() {
@@ -45,15 +20,15 @@ function newGame() {
     homeScoreEl.textContent = homeScore
     awayScore = 0
     awayScoreEl.textContent = awayScore
-    leadingEl.textContent = "Let's Play!"
+    result.textContent = "Let's Play!"
 }
 
-function leading() {
+function updateLeader() {
     if (homeScore > awayScore) {
-        leadingEl.textContent = "Home team is leading the game!"
+        result.textContent = "Home team is leading the game!"
     } else if (homeScore < awayScore) {
-        leadingEl.textContent = "Guest team is leading the game!"
+        result.textContent = "Guest team is leading the game!"
     } else {
-        leadingEl.textContent = "It's a tie!"
+        result.textContent = "It's a tie!"
     }
 }
